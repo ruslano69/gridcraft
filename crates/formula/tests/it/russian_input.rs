@@ -130,6 +130,6 @@ fn russian_display_round_trips_text_containing_separators() {
     let ru = FormulaLocale::Ru;
     let expr = parse(r#"IF(A1="a,b;c",CONCAT("1.5",",",";"),SUM(0.25,A1:A3 B2))"#).unwrap();
     let shown = print_input(&expr, ru, |_| false).unwrap();
-    assert_eq!(shown, r#"ЕСЛИ(A1="a,b;c";CONCAT("1.5";",";";");СУММ(0,25;A1:A3 B2))"#);
+    assert_eq!(shown, r#"ЕСЛИ(A1="a,b;c";СЦЕП("1.5";",";";");СУММ(0,25;A1:A3 B2))"#);
     assert_eq!(print(&parse_input(&shown, ru, |_| false).unwrap()), print(&expr));
 }
